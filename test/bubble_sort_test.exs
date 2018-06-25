@@ -2,6 +2,8 @@ defmodule SortingTest do
   use ExUnit.Case
   import Algorithms.BubbleSort, only: [sort: 1, swap: 3]
 
+  doctest Algorithms.BubbleSort
+
   test "swaps two elements in a list" do
     assert swap([], 0, 2) == []
     assert swap([1], 0, 2) == [1]

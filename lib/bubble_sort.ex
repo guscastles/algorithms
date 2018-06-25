@@ -26,10 +26,15 @@ defmodule Algorithms.BubbleSort do
     []
   end
 
-  def sort([a]) do
-    [a]
-  end
+  @doc ~S"""
+  Sorts a given list using the Bubble Sort algorithm.
 
+  # Examples
+
+      iex> Algorithms.BubbleSort.sort([4, 3, 1, 2])
+      [1, 2, 3, 4]
+
+  """
   def sort([h|t]) do
     _sort([h], t, [])
   end
