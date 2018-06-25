@@ -1,4 +1,4 @@
-defmodule QuickSort do
+defmodule Algorithms.QuickSort do
   @moduledoc ~S"""
   Quick sort algorithm.
   """
@@ -6,32 +6,21 @@ defmodule QuickSort do
   @doc """
   Single element list or Empty list returning the same.
 
-  ## Empty list []
+  ## Examples
 
-      iex> QuickSort.qsort([])
+      iex> Algorithms.QuickSort.sort([])
       []
-      iex> QuickSort.qsort([1])
+      iex> Algorithms.QuickSort.sort([1])
       [1]
-
-  """
-  def qsort([]) do
-    []
-  end
-
-  def qsort([a]) do
-    [a]
-  end
-
-  @doc ~S"""
-  Main function for the quick sort algorithm.
-
-  ## Example:
-
-      iex> QuickSort.qsort([2, 3, 1])
+      iex> Algorithms.QuickSort.sort([2, 3, 1])
       [1, 2, 3]
 
   """
-  def qsort([h|t]) do
+  def sort([]) do
+    []
+  end
+
+  def sort([h|t]) do
     _sort(t, [h])
   end
 
