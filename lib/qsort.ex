@@ -2,6 +2,7 @@ defmodule Algorithms.QuickSort do
   @moduledoc ~S"""
   Quick sort algorithm.
   """
+  alias Algorithms.List, as: Lst
 
   @doc """
   Single element list or Empty list returning the same.
@@ -20,8 +21,21 @@ defmodule Algorithms.QuickSort do
     []
   end
 
-  def sort([h|t]) do
-    _sort(t, [h], [])
+  def sort(list) when is_list(list) do
+    with median_position <- list |> _median(),
+         {pivot, initial_list} <- list |> _pivot(median_position),
+      do: _sort(initial_list, [pivot], [])
+  end
+
+  defp _pivot(list, position) do
+    list 
+    |> List.pop_at(position)
+  end
+
+  defp _median(list) do
+    (list 
+     |> Lst.count 
+     |> Integer.floor_div(2)) - 1
   end
 
   defp _sort([], [a], accum) do
@@ -30,7 +44,9 @@ defmodule Algorithms.QuickSort do
 
   defp _sort(list, pivot, accum) do
     [ha|ta] = _sort(list, pivot)
-    _sort(tl(ta), [hd(ta)], accum ++ [ha])
+    {next_pivot, next_list} = with median <- ta |> _median(),
+                                do: ta |> _pivot(median)
+    _sort(next_list, [next_pivot], accum ++ [ha])
   end
 
   defp _sort([], list) do
