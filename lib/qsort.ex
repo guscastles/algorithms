@@ -21,7 +21,16 @@ defmodule Algorithms.QuickSort do
   end
 
   def sort([h|t]) do
-    _sort(t, [h])
+    _sort(t, [h], [])
+  end
+
+  defp _sort([], list, accum) do
+    accum ++ [hd(list)]
+  end
+
+  defp _sort([h|t], p, accum) do
+    list = _sort([h|t], p)
+    _sort(tl(tl(list)), [hd(tl(list))], accum ++ [hd(list)])
   end
 
   defp _sort([], list) do

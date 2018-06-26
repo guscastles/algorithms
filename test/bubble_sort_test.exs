@@ -1,4 +1,4 @@
-defmodule SortingTest do
+defmodule BubbleSortTest do
   use ExUnit.Case
   import Algorithms.BubbleSort, only: [sort: 1, swap: 3]
 

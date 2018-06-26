@@ -25,4 +25,8 @@ defmodule QuickSortTest do
     assert sort([3, 1, 2]) == [1, 2, 3]
   end
 
+  test "sorts a list with four elements" do
+    assert sort([4, 1, 3, 2]) == [1, 2, 3, 4]
+  end
+
 end
