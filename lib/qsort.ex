@@ -24,24 +24,25 @@ defmodule Algorithms.QuickSort do
     _sort(t, [h], [])
   end
 
-  defp _sort([], list, accum) do
-    accum ++ [hd(list)]
+  defp _sort([], [a], accum) do
+    accum ++ [a]
   end
 
-  defp _sort([h|t], p, accum) do
-    list = _sort([h|t], p)
-    _sort(tl(tl(list)), [hd(tl(list))], accum ++ [hd(list)])
+  defp _sort(list, pivot, accum) do
+    [ha|ta] = _sort(list, pivot)
+    _sort(tl(ta), [hd(ta)], accum ++ [ha])
   end
 
   defp _sort([], list) do
     list
   end
 
-  defp _sort([ha|ta], [hb|tb]) do
-    cond do
-      ha > hb -> _sort(ta, [hb|tb] ++ [ha])
-      true -> _sort(ta, [ha|[hb|tb]])
-    end
+  defp _sort([ha|ta], [hb|tb]) when ha > hb do
+    _sort(ta, [hb|tb] ++ [ha])
+  end
+
+  defp _sort([ha|ta], accum) do
+    _sort(ta, [ha|accum])
   end
 
 end
